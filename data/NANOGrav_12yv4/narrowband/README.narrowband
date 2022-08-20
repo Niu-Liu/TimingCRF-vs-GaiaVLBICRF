@@ -1,0 +1,239 @@
+DIRECTORY AND FILE STRUCTURE (FURTHER DETAILS BELOW)
+---------------------------------------------------
+
+    NANOGrav_12yv4/narrowband/par/*.par
+        Timing model parameters for each pulsar
+    NANOGrav_12yv4/narrowband/tim/*.tim
+        Times-of-arrival (TOAs) for each pulsar
+    NANOGrav_12yv4/narrowband/template/*.sum.sm
+        FITS format standard profile templates used for each pulsar/receiver.
+    NANOGrav_12yv4/narrowband/resid/dmx_vals/*.dmx
+        Variation in dispersion measure ("DMX"); these DMX values are plotted in the Appendix Figs 6-52
+    NANOGrav_12yv4/narrowband/resid/res_full/*.all.res
+        Individual residuals; plotted in Appendix Figs 6-52
+    NANOGrav_12yv4/narrowband/resid/res_full_white/*.allw.res
+        Whitened individual residuals, for pulsars with red noise in parfile; plotted in Appendix Figs 6-52
+    NANOGrav_12yv4/narrowband/resid/res_avg/*.avg.res
+        Epoch-averaged residuals; plotted in Appendix Figs 6-52
+    NANOGrav_12yv4/narrowband/resid/res_avg_white/*.avgw.res
+        Whitened epoch-averaged residuals, for pulsars with red noise in parfile; plotted in Appendix Figs 6-52
+    NANOGrav_12yv4/narrowband/alternate/NoRedNoisePars/par/*.NRNP.par
+        "Predictive" timing models for each pulsar.
+	   The red noise has been replaced by one or more additional frequency derivatives. These parfiles can be used to fold existing data, e.g. Fermi or NICER photons.
+
+
+PRIMARY PARAMETER AND TOA FILES AND THEIR USE
+---------------------------------------------
+
+  The primary files in this data set are the parameters and TOAs in
+the NANOGrav_12yv4/narrowband/par and NANOGrav_12y/narrowband/tim
+directories.  With the exception of J1713+0747, all par and tim files
+should work identically in both tempo and tempo2.  For J1713+0747,
+tempo2 requires an alternate par file
+(J1713+0747_NANOGrav_12yv4.t2.par).
+
+  Timing parameters listed in the .par file are documented at the following
+tempo and tempo2 websites:
+  http://tempo.sourceforge.net/reference_manual.html
+  http://tempo.sourceforge.net/ref_man_sections/parameter.txt
+  http://tempo.sourceforge.net/ref_man_sections/binary.txt
+  https://bitbucket.org/psrsoft/tempo2/src/master/documentation/
+  https://arxiv.org/abs/astro-ph/0603381
+
+  TOAs listed in the .tim file are in "tempo2" format, documented at the
+following tempo and tempo2 websites:
+  http://tempo.sourceforge.net/ref_man_sections/toa.txt
+
+  In TOA files, lines starting with "C " are comments, which are calculated
+TOAs that have been cut from the data set.  If a TOA line is commented, we
+provide the reason using the following "-cut" flags:
+
+  -cut dmx:        Fractional bandwidth f_high/f_low < 1.1 during the
+                     observing epoch (we require f_high/f_low > 1.1 for
+		             observing epochs to be included, such that DMX can
+		             be measured at that epoch)
+  -cut snr:        Pulse profile from which TOA was generated has S/N < 8
+  -cut outlier10:  TOA has an outlier probability of > 0.1
+  -cut badepoch:   TOA is from an observation corrupted by instrumentation
+                     issues or RFI, such that all TOAs from that observation
+		             are commented out
+  -cut epochdrop:  TOA is from an observation found to significantly alter
+                     the chi-square, as determined by F-test p < 1e-6, so all
+		             TOAs from that observation were removed
+  -cut manual:     TOA was manually removed, e.g. due to the corresponding
+                     profile appearing corrupted by RFI or other instrumental
+		             issue
+  -cut simul:      Comment ASP/GASP TOA because it is simultaneous with a
+                     PUPPI/GUPPI TOA due to having observed with both backends
+		             during the transition from ?ASP to ?UPPI
+  -cut orphaned:   TOAs originate from test observations in different receiver
+                     bands, so are not included in the data set
+
+  Other TOA lines begin with a raw data file name (as a historical
+reference to the origin of the data), the topocentric observing
+frequency in MHz, the TOA itself as an MJD, the uncertainty in the TOA
+in microseconds, and the observatory code ("ao" or "gbt" for Arecibo or
+the GBT.)  These are followed by some or all of the following flags:
+
+  -fe:     Front End (telescope receiver)
+  -be:     Back End (telescope data acquisition system)
+  -f:      Front End plus Back End combination
+  -bw:     Bandwidth (bandwidth of spectral channels used for this TOA, in MHz)
+  -tobs:   Observing time (seconds)
+  -tmplt:  Filename of standard profile template used to calculate the TOA
+  -gof:    Goodness-of-fit (reduced chi-square) of the template to the
+             channelized profile
+  -nbin:   The number of bins in the original data profile (always 2048 in
+             this data set)
+  -nch:    The number of raw spectral channels summed to produce the subband
+             for this TOA
+  -chan:   Spectral channel number after summing raw channels (number between
+             0 and the number of channels)
+  -subint: Subintegration number in cases where a continuous observation was
+             broken into small time segments (number between 0 and the number
+             of subintegrations minus one)
+  -snr:    Signal-to-noise ratio reported by the psrchive program pat
+  -wt:     Channel weight: product of bandwidth and observation time (units of
+             10^6 but otherwise dimensionless)
+  -flux:   Flux density in this channel (mJy, GUPPI/PUPPI only)
+  -fluxe:  Uncertainty in flux in this channel (mJy, GUPPI/PUPPI only)
+  -proc:   Processing pipeline used to calculate the TOA ("9y" for TOAs
+             calculated for the NANOGrav nine-year data set and imported
+             directly into the 11-year data set; "12y" for TOAs newly
+	         calculated for the 12.5-year data set)
+  -pta:    Pulsar Timing Array (always "NANOGrav" in this data set)
+  -to:     Time offset incorporated into TOA to account for hardware delay
+             in the back end (seconds)
+  -ver:    TOA calculation pipeline version (typically  date as yyyymmdd)
+  -bad:    Bad TOA; "-bad vis" is equivalent to "-cut manual"; only used in
+             commented-out TOAs
+  -simul:  Data taken simultaneously with multiple back ends; since they are
+             redundant, only data from one back end is kept in the data set
+  -img uncorr: This profile did not undergo removal of the ADC artifact image
+
+  This data set requires up-to-date installations of tempo or tempo2 in
+order to work correctly.  If your installation of tempo is older than January
+2019 (tempo version 13.000, 2019-01-17, 3452a0c), or of tempo2 is older than
+June 2019 (tempo2 version 2019.01.1), it should be updated from the
+source repositories at:
+
+   http://tempo.sourceforge.net
+   https://bitbucket.org/psrsoft/tempo2
+
+PINT timing software can be obtained from:
+
+  https://github.com/nanograv/PINT
+
+  Please also ensure that the clock files you are using cover the full
+range of the data set. Using the provided clock files (see below)
+will ensure this.
+
+  All models included here are based on a generalized least squares
+(GLS) fit that includes a noise model with covariance between TOAs
+(ECORR/jitter parameters; RNAMP/RNIDX red noise parameters), as well as
+"traditional" EQUAD and EFAC parameters.  All noise model parameters are
+included in the par files.  In order to run tempo with GLS fitting, you
+must include the "-G" flag on the tempo command line.  Tempo2 will
+notice the presence of the relevant parameters and enable GLS fitting
+automatically.  If this seems not to be working, please check that your
+version of tempo/tempo2 is up to date as described above.  In tempo2, if
+GLS fitting is working, you should see output lines similar to:
+
+    [t2fit.C:99] NEW fit routine. GlobalFit=false
+    [t2fit.C:850] Generated 240 TNepochs from 4 TNECORRs
+    (...etc...)
+
+
+STANDARD PROFILE TEMPLATES
+--------------------------
+
+  The NANOGrav_12y/template directory contains all pulse profile templates
+used for generation of the TOAs in this data set.  The templates are given in
+PSRFITS format, and the template used for any given TOA can be identified via
+the -tmplt flag on the TOA line.  See the NANOGrav Nine-year data set paper
+(Arzoumanian et al 2015, ApJ 813, 65; arXiv:1505.07540)  and the NANOGrav
+Five-year data set paper (Demorest et al 2013, ApJ 562, 94; arXiv:1201.6641)
+for a description of the algorithms used in template profile generation.
+These templates can be read by the programs in the psrchive package at
+    http://psrchive.sourceforge.net/
+
+
+CLOCK FILES
+-----------
+
+  The clock files used for our analysis are provided in the
+NANOGrav_12yv4/clock/ subdirectory.  While the standard files
+distributed with tempo/tempo2 should be consistent with these, this
+may be a source of inconsistent results in the future. PINT does not
+provide its own clock files, and instead references tempo clock files.
+Please see the README.clock file in NANOGrav_12yv4/clock for
+installation instructions.
+
+
+RESIDUALS AND DM VARIATIONS
+---------------------------
+
+These files give the timing residuals and DM variations of NANOGrav
+observations and analysis of the 47 pulsars in the NANOGrav 12.5-Year Data
+Set. The full set of pulse arrival times and pulsar timing models for
+this data set is available from http://data.nanograv.org.
+
+We caution against using pulsar timing residuals for high-accuracy
+astrophysical studies.  The values of residuals are highly dependent on the
+timing model used to generate them.  They have, in effect, undergone filtering
+due to each parameter included in the timing model fit to the data.  For
+astrophysical studies involving phenomena not incorporated into the timing
+models used to calculate these residuals, we recommend re-fitting the timing
+measurements to all of the standard timing model parameters simultaneously
+with the additional phenomena under study.
+
+Files are given for each pulsar in ASCII form in the following directories:
+
+  res_full: individual residuals (includes EFAC and EQUAD parameters)
+
+  res_full_white: whitened individual residuals (for pulsars with red noise)
+
+  res_avg:  epoch-average residuals
+
+  res_avg_white: whitened epoch-average residuals (for pulsars with red noise)
+
+  dmx_vals: variation in dispersion measure ("DMX")
+
+In each res_full and res_full_white file, the columns are:
+  1:  Date (MJD)
+  2:  Central radio frequency of spectral channel (MHz)
+  3:  Residual (microseconds)
+  4:  Uncertainty in residual (microsecond)
+  5:  Orbital phase (turns)
+  6:  Flag denoting the combination of telescope receiver and data acquisition
+        system (back end)
+
+In each res_avg and res_avg_white file, the columns are:
+  1:  Date (MJD)
+  2:  Central radio frequency of full observing band at the given epoch (MHz)
+  3:  Residual (microseconds)
+  4:  Uncertainty in residual (microsecond)
+  5:  Orbital phase (turns)
+  6:  Reduced chi^2 from calculation of average residual (based on uncertainties of points averaged)
+  7:  Flag denoting the combination of telescope receiver and data acquisition
+        system (back end)
+
+The telescopes, data acquisition systems, and receiver bands are
+described in detail in Table 1 of Arzoumanian et al 2015, ApJ 813: 65.
+
+The procedure used to calculate daily-average residuals is described in
+Appendix D of Arzoumanian et al 2015, ApJ 813: 65.
+
+In each DMX file, the columns are:
+  1:  Date of DMX value, MJD (central value)
+  2:  DMX (DM offset) (pc cm^-3)
+  3:  DMX uncertainty (pc cm^-3)
+  4:  Date (MJD) at start of this DMX bin
+  5:  Date (MJD) at end of this DMX bin
+  6:  Frequency of the lowest-frequency TOA in this bin (MHz)
+  7:  Frequency of the highest-frequency TOA in this bin (MHz)
+  8:  DMX bin number in the tempo parameter file
+
+The procedure used to calculate DM variations (DMX) and their uncertainties is
+described in section 4.1 of Arzoumanian et al 2015, ApJ 813: 65.
+

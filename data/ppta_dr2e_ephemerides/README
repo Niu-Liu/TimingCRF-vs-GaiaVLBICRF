@@ -1,0 +1,8 @@
+This data collection is described by Reardon et al. (2021).  It contains parameter and arrival time files used to develop new timing models for the Parkes Pulsar Timing Array (PPTA) pulsars.
+
+The timing models for each pulsar are stored as <pulsarName.par>
+The arrival times for each pulsar are stored in tempo2 format as <pulsarName.tim>
+Averaged arrival times are provided in averaged/<pulsarName>.avg.tim
+
+The Parkes local clock files, a text file describing the derived parameters, and the codes used to form the frequency averages and derive additional parameters, are provided in "Auxiliary files".
+

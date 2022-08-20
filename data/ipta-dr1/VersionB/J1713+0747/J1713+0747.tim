@@ -1,0 +1,5 @@
+FORMAT 1 
+INCLUDE tims/EPTA.J1713+0747.tim.DMflags 
+INCLUDE tims/PPTA.J1713+0747.dr1e.tim.DMflags 
+INCLUDE tims/J1713+0747_NANOGrav_8y.tim.DMflags 
+INCLUDE tims/J1713+0747_NANOGrav_sns+05.tim.DMflags 

@@ -1,0 +1,20 @@
+NANOGrav-12.5
+http://data.nanograv.org
+https://zenodo.org/record/4312297#.YZtEHi8RpzU
+
+PPTA-DR2e
+https://data.csiro.au/collection/csiro:50795v2
+
+Gaia EDR3 X ATNF
+https://zenodo.org/record/4378294#.YZ2d8y8Rq0o
+Tool to reproduce these results
+https://doi.org/10.5281/zenodo.4378294
+
+UTMOST
+https://github.com/Molonglo/TimingDataRelease1/
+
+IPTA-DR1
+https://gitlab.com/IPTA/DR1
+
+IPTA-DR2
+https://gitlab.com/IPTA/DR2/tree/master/release

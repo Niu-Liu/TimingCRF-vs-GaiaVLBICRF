@@ -1,0 +1,245 @@
+DIRECTORY AND FILE STRUCTURE (FURTHER DETAILS BELOW)
+---------------------------------------------------
+
+    NANOGrav_12yv4/wideband/par/*.par
+        Timing model parameters for each pulsar
+    NANOGrav_12yv4/wideband/tim/*.tim
+        Times-of-arrival (TOAs) for each pulsar
+    NANOGrav_12yv4/wideband/template/*.avg_port.spl
+        Python pickle files containing profile evolution models.
+    NANOGrav_12yv4/wideband/resid/dm_vals/*.ppdm
+        Dispersion measure (DM) measurements
+    NANOGrav_12yv4/wideband/resid/dmx_vals/*.dmx
+        Variation in dispersion measure ("DMX")
+    NANOGrav_12yv4/wideband/resid/res_full/*.all.res
+        Individual residuals
+    NANOGrav_12yv4/wideband/resid/res_full_white/*.allw.res
+        Whitened individual residuals, for pulsars with red noise in parfile
+    NANOGrav_12yv4/wideband/alternate/NoRedNoisePars/par/*.NRNP.par
+        "Predictive" timing models for each pulsar.
+	The red noise has been replaced by one or more additional frequency derivatives.
+	These parfiles can be used to fold existing data, e.g. Fermi or NICER photons.
+
+
+PRIMARY PARAMETER AND TOA FILES AND THEIR USE
+---------------------------------------------
+
+  The primary files in this data set are the parameters and TOAs in
+the NANOGrav_12yv4/wideband/par and NANOGrav_12y/wideband/tim
+directories.  These can be used with the latest tempo version, which includes
+wideband/DMDATA functionality.  An additional par file is provided for
+J1713+0747, using the T2 binary model, which is compatible  with tempo2;
+however, tempo2 does not have wideband/DMDATA functionality.
+
+  Timing parameters listed in the .par file are documented at the following
+tempo and tempo2 websites:
+  http://tempo.sourceforge.net/reference_manual.html
+  http://tempo.sourceforge.net/ref_man_sections/parameter.txt
+  http://tempo.sourceforge.net/ref_man_sections/binary.txt
+  https://bitbucket.org/psrsoft/tempo2/src/master/documentation/
+  https://arxiv.org/abs/astro-ph/0603381
+
+  The exceptions are the newly implemented wideband parameters for tempo:
+    DMDATA -- has a flag (1 or 0) indicating to use the DM measurements or not
+    DMEFAC -- functions just like normal EFAC, but for the DM measurements
+    DMJUMP -- similar to JUMP, a constant offset applied to DM measurements
+
+  TOAs listed in the .tim file are in "tempo2" format, documented at the
+following tempo and tempo2 websites:
+  http://tempo.sourceforge.net/ref_man_sections/toa.txt
+
+  In TOA files, lines starting with "C " are comments, which are calculated
+TOAs that have been cut from the data set.  If a TOA line is commented, we
+provide the reason using the following "-cut" flags:
+
+  -cut dmx:        Fractional bandwidth f_high/f_low < 1.1 during the
+                     observing epoch (we require f_high/f_low > 1.1 for
+		             observing epochs to be included, such that DMX can
+		             be measured at that epoch)
+  -cut simul:      Comment ASP/GASP TOA because it is simultaneous with a
+                     PUPPI/GUPPI TOA due to having observed with both backends
+		             during the transition from ?ASP to ?UPPI
+  -cut snr:        Pulse profile from which TOA was generated has S/N < 25
+  -cut epochdrop:  TOA is from an observation found to significantly alter
+                     the chi-square, as determined by F-test p < 1e-6, so all
+		             TOAs from that observation were removed
+  -cut one:        The subintegration for this TOA only had one profile
+  -cut manual:     TOA was manually removed
+  -cut cull:       The TOA had a large residual (< 100 us) in initial timing
+
+  Other TOA lines begin with a raw data file name (as a historical
+reference to the origin of the data), the topocentric observing
+frequency in MHz, the TOA itself as an MJD, the uncertainty in the TOA
+in microseconds, and the observatory code ("ao" or "gbt" for Arecibo or
+the GBT.)  These are followed by some or all of the following flags:
+
+  -pp_dm:  The wideband DM measured simultaneously with this TOA (cm**-3 pc)
+  -pp_dme: The uncertainty on the DM measurement (cm**-3 pc)
+  -fe:     Front End (telescope receiver)
+  -be:     Back End (telescope data acquisition system)
+  -f:      Front End plus Back End combination
+  -bw:     ***Effective bandwidth difference between centers of highest and
+             lowest frequency channels used for wideband TOA fit (MHz)
+  -tobs:   Observing time (seconds)
+  -tmplt:  ***Filename of template used to calculate the TOA
+  -gof:    ***Goodness-of-fit (reduced chi-square) of the template to the
+             channelized profile
+  -nbin:   The number of bins in the original data profile (always 2048 in
+             this data set)
+  -nch:    ***The total number of frequency channels in the subintegration
+  -nchx:   ***The number of non-zero-weighted frequency channels used in the
+             wideband TOA measurement
+  -chbw:   ***Channel bandwidth (MHz)
+  -fratio: ***the ratio of the highest and lowest channels' center
+             frequencies; in combination with the -bw flag, this value can be
+             used to recover the two frequencies
+  -subint: Subintegration number in cases where a continuous observation was
+             broken into small time segments (number between 0 and the number
+             of subintegrations minus one)
+  -snr:    ***Signal-to-noise ratio
+  -flux:   Flux density in this channel (mJy, GUPPI/PUPPI only)
+  -fluxe:  Uncertainty in flux in this channel (mJy, GUPPI/PUPPI only)
+  -flux_ref_freq:  ***Reference frequency for the flux measurement (MHz,
+                    GUPPI/PUPPI only)
+  -proc:   Processing pipeline used to calculate the TOA ("12y" for TOAs newly
+             calculated for the 12.5-year data set)
+  -pta:    Pulsar Timing Array (always "NANOGrav" in this data set)
+  -to:     Time offset incorporated into TOA to account for hardware delay
+             in the back end (seconds)
+  -ver:    TOA calculation pipeline version (typically  date as yyyymmdd)
+  -simul:  Data taken simultaneously with multiple back ends; since they are
+             redundant, only data from one back end is kept in the data set
+  -img uncorr:     ***Some of the profiles in this subintegration did not
+             undergo removal of the ADC artifact image
+
+  Flags with *** are either new (for wideband TOAs) or are different from
+their narrowband counterparts.  See the 12.5-year data set paper for details.
+
+  This data set requires up-to-date installations of tempo in order to work
+correctly.  If your installation of tempo is older than May 2020
+(Tempo v 13.100 2020-05-14 db5bfa1), it should be updated from the source
+repository at:
+
+   http://tempo.sourceforge.net
+
+  Please also ensure that the clock files you are using cover the full
+range of the data set. Using the provided clock files (see below)
+will ensure this.
+
+  All models included here are based on a generalized least squares
+(GLS) fit that includes a noise model with "traditional" EQUAD and EFAC
+parameters, RNAMP/RNIDX red noise parameters (where it is significant), and
+new DMEFAC parameters, which function as EFAC parameters for the DM
+measurements.  All noise model parameters are included in the par files.  One
+additional type of parameter is included, DMJUMP, which functions like JUMP for
+the DM measurements.  However, tempo cannot fit for DMJUMP parameters.  In
+order to enable the wideband functionality, "DMDATA 1" must be in the parfile
+(it is already present in the released par files) and tempo must be run using
+GLS fitting, which requires that the "-G" flag be included when run from the
+command line.  Tempo2 does not have such functionality, but a
+tempo2-compatible parfile for J1713+0747 has been included.  PINT will soon
+have wideband functionality.
+
+
+STANDARD PROFILE TEMPLATES
+--------------------------
+
+  The NANOGrav_12y/template directory contain profile evolution models used to
+construct template profiles for wideband TOA measurement.  The models are
+provided as Python pickle files, which can be loaded using Python's native
+pickle module, or can be read-in and manipulated with the PulsePortraiture
+function read_spline_model(), which has a docstring.  PulsePortraiture is
+available at https://github.com/pennucci/PulsePortraiture, and also contains
+the wideband TOA measurement code.  See the 12.5-year wideband data set paper
+for details, and also the papers Pennucci, Demorest, & Ransom (2014, ApJ, 790, 93) and Pennucci (2019, ApJ, 871, 34) for full descriptions of the wideband
+TOA/DM measurement algorithm and evolving templates, respectively.
+  The contents of each pickle file are the following:
+    model,psr,avg_port,mean_prof,eig,tck = read_spline_model("modelfile.spl")
+      model     = the name of the model
+      psr       = the name of the pulsar
+      avg_port  = the name of the average portrait PSRFITS file from which the
+                  model was made
+      mean_prof = an array of length nbin (=2048) containing the
+                  wavelet-smoothed mean profile
+      eig       = an array of shape nbin x neig containing neig
+                  wavelet-smoothed "eigenprofiles", which form the basis for
+                  describing profile evolution, and which were obtained via PCA
+      tck       = a list of t, c, and k, used with scipy.interpolate's splprep
+                  function to evaluate the interpolating B-spline, where:
+                    t = the location of the spline knots (MHz); minimally there
+                        are eight knots, which corresponds to two end points
+                        with redundancy.
+                    c = a list of length neig, each containing an array of
+                        nB B-spline coefficients, which is minimally nB = 4
+                    k = the degree of all splines used (fixed here to = 3)
+
+CLOCK FILES
+-----------
+
+  The clock files used for our analysis are provided in the clock/
+subdirectory.  While the standard files distributed with tempo/tempo2
+should be consistent with these, this may be a source of inconsistent
+results in the future.  Please see the README.clock file in that
+directory for installation instructions.
+
+
+RESIDUALS AND DM VARIATIONS
+---------------------------
+
+These files give the timing residuals and DM variations of NANOGrav
+observations and analysis of 48 pulsars in the NANOGrav 12.5-Year Data
+Set. The full set of pulse arrival times and pulsar timing models for
+this data set is available from http://data.nanograv.org.
+
+We caution against using pulsar timing residuals for high-accuracy
+astrophysical studies.  The values of residuals are highly dependent on the
+timing model used to generate them.  They have, in effect, undergone filtering
+due to each parameter included in the timing model fit to the data.  For
+astrophysical studies involving phenomena not incorporated into the timing
+models used to calculate these residuals, we recommend re-fitting the timing
+measurements to all of the standard timing model parameters simultaneously
+with the additional phenomena under study.
+
+Files are given for each pulsar in ASCII form in the following directories:
+
+  res_full: individual residuals (includes EFAC and EQUAD parameters)
+
+  res_full_white: whitened individual residuals (for pulsars with red noise)
+
+  dm_vals: the DMJUMP-/DMEFAC-adjusted DMs, each of which has a correponding
+        wideband TOA (cf. --pp_dm)
+
+  dmx_vals: variation in dispersion measure ("DMX")
+
+In each res_full and res_full_white file, the columns are:
+  1:  Date (MJD)
+  2:  Central radio frequency of spectral channel (MHz)
+  3:  Residual (microseconds)
+  4:  Uncertainty in residual (microsecond)
+  5:  Orbital phase (turns)
+  6:  Flag denoting the combination of telescope receiver and data acquisition
+        system (back end)
+
+The telescopes, data acquisition systems, and receiver bands are
+described in detail in Table 1 of Arzoumanian et al 2015, ApJ 813: 65.
+
+In each DM file, the columns are:
+  1:  The corresponding TOA MJD truncated to 4 decimal places
+  2:  The DM, which is the same as -pp_dm for the corresponding TOA (pc cm^-3),        plus the corresponding DMJUMP
+  3:  The DM uncertainty, which is the same as -pp_dme (pc cm^-3), times the
+        corresponding DMEFAC
+  4:  Flag denoting the combination of telescope receiver and data acquisition
+        system (back end)
+
+In each DMX file, the columns are:
+  1:  Date of DMX value, MJD (central value)
+  2:  DMX (DM offset) (pc cm^-3)
+  3:  DMX uncertainty (pc cm^-3)
+  4:  Date (MJD) at start of this DMX bin
+  5:  Date (MJD) at end of this DMX bin
+  6:  Frequency of the lowest-frequency profile used for TOAs in this bin (MHz)
+  7:  Frequency of the highest-frequency profile used for TOAs in this bin(MHz)
+  8:  DMX bin number in the tempo parameter file
+
+The procedure used to calculate DM variations (DMX) and their uncertainties is
+described in section 4.1 of Arzoumanian et al 2015, ApJ 813: 65.

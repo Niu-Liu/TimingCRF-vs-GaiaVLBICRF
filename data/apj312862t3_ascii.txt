@@ -1,0 +1,42 @@
+Table 3 
+Astrometric Fits for All Target Pulsars
+
+
+Parameter	PSR J0108-1431	PSR J0437-4715	PSR J0630-2834	PSR J0737-3039	
+R.A. (J2000)	01:08:08.347016 +or- 0.000088	04:37:15.883250 +or- 0.000003	06:30:49.404393 +or- 0.000043	07:37:51.248419 +or- 0.000026	
+Decl. (J2000)	-14:31:50.187139 +or- 0.001069	-47:15:09.031863 +or- 0.000037	-28:34:42.778813 +or- 0.000372	-30:39:40.714310 +or- 0.000099	
+Proper motion in R.A. (mu_alpha; mas yr^-1)	75.05 +or- 2.26	121.679 +or- 0.05	-46.30 +or- 0.99	-3.82 +or- 0.62	
+Proper motion in decl. (mu_delta; mas yr^-1)	-152.54 +or- 1.65	-71.820 +or- 0.09	21.26 +or- 0.52	2.13 +or- 0.23	
+Parallax (pi; mas)	4.170 +or- 1.421	6.396 +or- 0.054	3.009 +or- 0.409	0.872 +or- 0.143	
+Distance (pc)	240^+124_-61	156.3^+1.3_-1.3	332^+52_-40	1150^+220_-160	
+Transverse velocity (v_t; km s^-1)	194^+104_-51	104.7^+1.0_-1.0	80^+15_-11	24^+9_-6	
+Reference epoch (MJD)	54100.0	54100.0	54100.0	54100.0	
+Visibility weighting	Sensitivity	Equal	Equal	Sensitivity	
+Image weighting	Natural	Uniform	Uniform	Natural	
+Average epoch mean fit error (mas)	1.232	0.059	0.765	0.747	
+Average intra-epoch systematic error (mas)	2.477	0.068	0.839	0.939	
+Average inter-epoch systematic error (mas)	4.310	0.103	1.205	0.0	
+Average single-epoch S/N	8	21	15	17	
+Covariance of pi and mu_alpha	0.27	-0.39	-0.01	-0.01	
+Covariance of pi and mu_delta	0.00	  0.60	-0.10	-0.06	
+					
+Parameter	PSR J1559-4438	PSR J2048-1616	PSR J2144-3933	PSR J2145-0750^a	
+					
+R.A. (J2000)	15:59:41.526126 +or- 0.000008	20:48:35.640637 +or- 0.000040	12:44:12.060404 +or- 0.000045	21:45:50.461901 +or- 0.000098	
+Decl. (J2000)	-44:38:45.901778 +or- 0.000035	-16:16:44.553501 +or- 0.000147	-39:33:56.885041 +or- 0.000316	-07:50:18.462388 +or- 0.000558	
+Proper motion in R.A. (mu_alpha; mas yr^-1)	1.52 +or- 0.14	114.24 +or- 0.52	-57.89 +or- 0.88	-15.43 +or- 2.07	
+Proper motion in decl. (mu_delta; mas yr^-1)	13.15 +or- 0.05	-4.03 +or- 0.24	-155.90 +or- 0.54	-7.67 +or- 0.81	
+Parallax (pi; mas)	0.384 +or- 0.081	1.712 +or- 0.909	6.051 +or- 0.560	-	
+Distance (pc)	2600^+690_-450	580^+660_-200	165^+17_-14	-	
+Transverse velocity (v_t; km s^-1)	163^+44_-29	317^+362_-111	130^+14_-12	-	
+Reference epoch (MJD)	54100.0	54100.0	54100.0	54100.0	
+Visibility weighting	Equal	Equal	Equal	Sensitivity	
+Image weighting	Uniform	Uniform	Natural	Natural	
+Average epoch mean fit error (mas)	0.242	0.517	1.025	2.136	
+Average intra-epoch systematic error (mas)	0.259	1.282	1.450	0.0	
+Average inter-epoch systematic error (mas)	0.055	0.105	0.875	0.0	
+Average single-epoch S/N	50	23	10	8	
+Covariance of pi and mu_alpha	-0.43	0.78	0.23	-	
+Covariance of pi and mu_delta	  0.18	0.64	0.16	-	
+Note.
+a Based on two detections, with parallax fixed at 0. Variation of the parallax value between 0 and 2 mas results in less than 100 muas yr^-1 difference in derived proper motion.

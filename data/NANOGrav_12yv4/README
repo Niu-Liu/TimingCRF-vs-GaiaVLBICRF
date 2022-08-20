@@ -1,0 +1,166 @@
+The NANOGrav 12.5-year data set
+Public release "12yv4" 2020/12/21
+
+Notes:
+* The Zenodo versions of this data release (DOIs 10.5281/zenodo.4312297 and
+10.5281/zenodo.4312887) contain data only associated with the relevant
+"narrowband" or "wideband" data paper, respectively.
+* The two papers are Alam et al. (2021a, 2021b) and are published in The
+Astrophysical Journal Supplement Series, 252, 4 & 5, respectively.
+* The papers can be found on the arXiv, arXiv:2005.06490 and arXiv:2005.06495,
+respectively.
+* Information specific to the individual data sets is provided in
+README.narrowband and README.wideband.
+
+
+OVERVIEW
+--------
+
+  This file contains "narrowband" and "wideband" TOAs and timing
+solutions for the NANOGrav 12.5-year data set, covering data taken
+from 2004 to 2017.5 using Arecibo and the Green Bank Telescope (GBT),
+with ASP/GASP and PUPPI/GUPPI backend instrumentation. Two papers
+(both Alam et al.), covering the narrowband and wideband data sets and
+timing, have been submitted to the ApJ Supplement Series for
+publication. The narrowband analysis is nearly identical to that of
+the 11-year NANOGrav data set, published as "The NANOGrav 11-Year Data
+Set: High-precision timing of 45 Millisecond Pulsars" by Arzoumanian
+et al. (2018, ApJS, 235, 37; arXiv:1801.01837), but with additional
+data quality checks. The wideband timing method is described in
+Pennucci, Demorest, & Ransom (2014, ApJ, 790, 93; arXiv:1402.1672),
+Pennucci (2015, PhDT), and Pennucci (2019, ApJ, 871, 34;
+arXiv:1812.02006).
+
+  This release is available at http://data.nanograv.org.
+
+  All files are ASCII and are formatted for use with standard pulsar
+timing packages such as tempo, tempo2, and PINT, except for profile
+template files which are FITS format (narrowband) or python pickle files
+(wideband).
+
+  The narrowband data set "v2" was previously released to
+data.nanograv.org on 2019 Aug 01. The "v3" version was publicly released
+to data.nanograv.org on 2020 May 14, simultaneously with the arXiv
+posting and submission of the data set papers.  The current "v4" data
+set replaces the v3 data set, and we strongly recommend use of v4,
+especially for the wideband data set.
+
+  As noted in the change log below, one pulsar (PSR J2317+1439) had a
+marginally insignificant timing model parameter (H4) included
+erroneously in v3, and needed to have its analysis redone anyway, so
+its timing model differs from v3 to v4.  Furthermore, about half of
+the pulsars in the wideband data set were affected by a software issue
+that corrupted their TOAs at the level of 10s of ns; all of the
+pulsars were re-analyzed once this was fixed.
+
+  Questions about the contents of this data set can be sent to David
+Nice (niced@lafayette.edu), Megan DeCesar (megan.decesar@nanograv.org),
+Tim Pennucci (tim.pennucci@nanograv.org), or Paul Demorest
+(pdemores@nrao.edu).
+
+
+
+
+DIRECTORY AND FILE STRUCTURE (FURTHER DETAILS BELOW)
+---------------------------------------------------
+
+    NANOGrav_12yv4/README
+        This file.
+    NANOGrav_12yv4/clock
+        Files for tracing observatory-measured TOAs to clock standards.
+    NANOGrav_12yv4/narrowband
+        Directory containing the narrowband data set.
+	    Details are provided in README.narrowband in that directory.
+    NANOGrav_12yv4/wideband
+        Directory containing the wideband data set.
+	    Details are provided in README.wideband in that directory.
+
+
+SOFTWARE
+--------
+
+  This data set requires up-to-date installations of tempo, tempo2, or PINT.
+
+  For the narrowband data set, if your tempo installation is older than
+January 2019 (tempo version 13.000, 2019-01-17, 3452a0c), or of tempo2 is
+older than June 2019 (tempo2 version 2019.01.1), it should be updated from
+the source repositories at:
+
+   http://tempo.sourceforge.net
+   https://bitbucket.org/psrsoft/tempo2
+
+  The latest version of PINT can be obtained from:
+
+   https://github.com/nanograv/PINT
+
+  For the wideband data set, tempo -v should show:
+   Tempo v 13.100 (2020-05-14 db5bfa1)
+  or later; the latest version is available at the sourceforge link above.
+
+  Please also ensure that the clock files you are using cover the full
+range of the data set. Using the provided clock files (see below)
+will ensure this.
+
+  All models included here are based on a generalized least squares
+(GLS) fit that includes a noise model with covariance between TOAs
+(ECORR/jitter parameters, if narrowband; RNAMP/RNIDX red noise parameters,
+if significant), as well as "traditional" EQUAD and EFAC parameters.
+Additional EFAC parameters for the wideband DM measurements are also included.
+All noise model parameters are included in the par files.  In order to run
+tempo with GLS fitting, you must include the "-G" flag on the tempo command
+line.  Tempo2 will notice the presence of the relevant parameters and enable
+GLS fitting automatically.  If this seems not to be working, please check that
+your version of tempo/tempo2 is up to date as described above.  In tempo2, if
+GLS fitting is working, you should see output lines similar to:
+
+    [t2fit.C:99] NEW fit routine. GlobalFit=false
+    [t2fit.C:850] Generated 240 TNepochs from 4 TNECORRs
+    (...etc...)
+
+
+
+
+CLOCK FILES
+-----------
+
+  The clock files used for our analysis are provided in the clock/
+subdirectory.  While the standard files distributed with tempo and
+tempo2 should be consistent with the clock files provided in the
+current release at the time of writing, this may be a source of
+inconsistent results in the future.  Please see
+NANOGrav_12yv4/clock/README.clock directory for installation
+instructions.
+
+
+
+
+CHANGE LOG
+----------
+2020/12/18 (TTP)
+    Final update for release and publication.
+2020/07/25 (TTP)
+    Edited this README to reflect differences with v3 version.
+    Updated public release (12yv4) available on data.nanograv.org,
+accompanying re-submission of the narrowband and wideband data set
+papers, which have been accepted to ApJS.  J2317+1439 had one marginally
+insignificant timing model parameter removed (H4) in both data sets and
+also needed to have its red noise parameters updated.  A complete
+re-analyses of the wideband data set also was necessary after a software
+issue was discovered shortly after the v3 release, which had corrupted
+about half of the pulsars' TOAs at the 10s of ns level.
+
+2020/05/14 (TTP)
+    Edited this README to reflect differences with the wideband data set.
+
+2020/05/13 (MED)
+
+    Updated public release (12yv3) available on data.nanograv.org,
+accompanying submission of the narrowband and wideband data papers.
+    PSR J1022+1001 has been removed from the 12yv3 release due to
+persistent and unresolved timing difficulties.
+
+2019/08/01 (MED)
+
+    Initial public release (12yv2) available on data.nanograv.org.
+
+

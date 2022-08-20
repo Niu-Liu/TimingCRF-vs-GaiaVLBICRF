@@ -1,0 +1,29 @@
+PSR              J1910+0710
+RAJ      19:10:13.87255986  1          0.01476368
+DECJ      07:10:46.3644462  1           0.5182760
+POSEPOCH        57671.0000
+F0      1.8565041551912882  1  0.0000000000910055
+F1     -7.072324918298D-16  1  7.439420809830D-18
+F2     -1.729973239855D-25  1  6.534250780183D-26
+F3     -2.314538728540D-32  1  1.117473045222D-32
+PEPOCH        57671.000000
+START            56663.675
+FINISH           58680.197
+DM              254.078861  1            0.405923
+DMEPOCH        57251.0355
+SOLARN0              10.00
+EPHEM               DE436
+CLK                 UTC(NIST)                       
+UNITS               TDB
+TIMEEPH             FB90
+T2CMETHOD           TEMPO
+CORRECT_TROPOSPHERE N
+PLANET_SHAPIRO      N
+DILATEFREQ          N
+NTOA                    28
+TRES                637.45
+TZRMJD  57679.92478095997654
+TZRFRQ            1180.195
+TZRSITE                  AO
+MODE                     1
+NITS                     1

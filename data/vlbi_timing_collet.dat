@@ -1,0 +1,3 @@
+psr_name, pos_epoch, eph, ra, dec, pmra, pmdec, plx, ref, comment
+#, mjd, , deg, deg, mas/yr, mas/yr, mas, ,
+J0040+5716, 49667.0, DE200, 00:40:32.363(6), 57:16:24.91(5), , , , ,

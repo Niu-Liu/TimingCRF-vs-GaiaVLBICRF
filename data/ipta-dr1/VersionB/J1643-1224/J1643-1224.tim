@@ -1,0 +1,4 @@
+FORMAT 1 
+INCLUDE tims/EPTA.J1643-1224.cut.tim.DMflags 
+INCLUDE tims/NANOGrav.J1643-1224.dfg+12.tim.DMflags 
+INCLUDE tims/PPTA.J1643-1224.dr1e.cut.tim.DMflags 

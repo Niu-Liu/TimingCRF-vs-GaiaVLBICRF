@@ -1,0 +1,54 @@
+
+....Edit 10 rows of file 'tableb2.dat' with form=a
+#!form=a
+${Seq} ${PSRJ} ${RAh} ${RAm} ${RAs} ${e_RAs} ${DE-}${DEd} ${DEm} ${DEs} ${e_DEs} ${F0} ${e_F0} ${F1} ${e_F1} ${F2} ${e_F2} ${RMS} ${RMS/P0} ${NTOA} ${chi2r} ${l_chi2r} ${dof} ${dt}
+ (hit Return)
+## (from tabmap V6.0 (2016-08-18)) 2021-12-12T02:32:15
+#---------------------------------------------------------------------------
+#-- J/MNRAS/484/3691 UTMOST pulsar timing programme. I. (Jankowski+, 2019)
+#--------------------------------------------------------------------------
+#---Table: J/MNRAS/484/3691/tableb2.dat Rotational parameters for 197 isolated pulsars  (197 records)
+#-------------------------------------------------------------------------------
+#     Label Format Unit     Explanations
+#-------------------------------------------------------------------------------
+#       Seq I3     ---      Running number
+#      PSRJ A10    ---      Pulsar name (J2000)
+#       RAh I2     h        Right ascension (ICRF)
+#       RAm I2     min      Right ascension (ICRF)
+#       RAs F7.4   s        Right ascension (ICRF)
+#     e_RAs F6.4   s        Uncertainty of right ascension
+#       DE- A1     ---      Declination sign (ICRF)
+#       DEd I2     deg      Declination (ICRF)
+#       DEm I2     arcmin   Declination (ICRF)
+#       DEs F6.3   arcsec   Declination (ICRF)
+#     e_DEs F5.3   arcsec   Uncertainty of declination
+#        F0 F16.12 Hz       Pulsar spin frequency
+#      e_F0 F14.12 Hz       Uncertainty of spin frequency
+#        F1 F11.5  10-15/s2 First temp derivative of spin frequency
+#      e_F1 F7.5   10-15/s2 Uncertainty of first spin freq derivative
+#        F2 F11.5  10-24/s3 ?=- Second temp derivative of spin frequency
+#      e_F2 F7.5   10-24/s3 ?=- Uncertainty of second spin frequency
+#                            derivative
+#       RMS F6.1   us       Root mean square timing residual
+#    RMS/P0 F4.1   ---      RMS timing residual divided by spin period
+#      NTOA I3     ---      Number of pulse arrival times in fit
+#     chi2r F4.1   ---      Reduced chi2 of the timing fit
+#   l_chi2r A1     ---      Limit flag on reduced chi2
+#       dof I3     ---      Degrees of freedom of the timing fit
+#        dt F3.1   yr       Time span of pulse arrival times in fit
+#-------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+                R  R                  D  D                                                                                               RM   N    c l     
+Seq PSRJ       Ah Am     RAs     e_  Ed Em    DEs    e_               F0             e_          F1      e_          F2      e_    RMS S/P0 TOA hi2r _ dof  dt
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+  1 J0034-0721 00 34 08.91   0.05   -07 21 56.    2.      1.0605000639   0.0000000001      -0.448   0.008       ---     ---     2908.3  3.1  62  6.9    57 2.1
+  2 J0134-2937 01 34 18.692  0.001  -29 37 17.08  0.02    7.30131498121  0.00000000001     -4.178   0.001       ---     ---      114.3  0.8  57  1.0    52 1.7
+  3 J0151-0635 01 51 22.74   0.01   -06 35 03.9   0.3     0.68275004308  0.00000000001     -0.2067  0.0008      ---     ---      615.0  0.4  39  1.5    34 2.1
+  4 J0152-1637 01 52 10.852  0.006  -16 37 53.9   0.1     1.200851165189 0.000000000007    -1.873   0.002       ---     ---      259.6  0.3  39  1.0    34 1.4
+  5 J0206-4028 02 06 01.293  0.005  -40 28 03.62  0.07    1.585913888562 0.000000000009    -3.0095  0.0007      ---     ---      208.5  0.3  26  1.4    21 1.8
+  6 J0255-5304 02 55 56.2925 0.0009 -53 04 21.275 0.009   2.233596324088 0.000000000001    -0.1561  0.0001      ---     ---       77.1  0.2  99  2.8    94 2.2
+  7 J0401-7608 04 01 51.75   0.03   -76 08 13.0   0.1     1.83400703758  0.00000000003     -5.188   0.005       ---     ---      811.8  1.5  36  1.6    35 1.6
+  8 J0418-4154 04 18 03.787  0.008  -41 54 14.53  0.08    1.32079645096  0.00000000003     -2.293   0.003       ---     ---      350.9  0.5  19  0.7    14 1.6
+  9 J0450-1248 04 50 08.77   0.02   -12 48 07.0   0.5     2.2830308884   0.0000000001      -0.54    0.01       -0.00090 0.00005 1763.3  4.0  16  1.6    15 1.7
+ 10 J0452-1759 04 52 34.115  0.001  -17 59 23.30  0.04    1.821681556540 0.000000000002   -19.0946  0.0003      ---     ---      185.5  0.3  75  2.9    70 2.2
+--------------------------------------------------------------------------------------------------------------------------------------------------------------

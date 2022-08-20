@@ -1,0 +1,15 @@
+B1855+09_NANOGrav_dfg+12.par
+B1953+29_NANOGrav_dfg+12.par
+J0613-0200_NANOGrav_dfg+12.par
+J1012+5307_NANOGrav_dfg+12.par
+J1455-3330_NANOGrav_dfg+12.par
+J1600-3053_NANOGrav_dfg+12.par
+J1640+2224_NANOGrav_dfg+12.par
+J1643-1224_NANOGrav_dfg+12.par
+J1713+0747_NANOGrav_dfg+12.par
+J1744-1134_NANOGrav_dfg+12.par
+J1853+1308_NANOGrav_dfg+12.par
+J1909-3744_NANOGrav_dfg+12.par
+J1910+1256_NANOGrav_dfg+12.par
+J1918-0642_NANOGrav_dfg+12.par
+J2317+1439_NANOGrav_dfg+12.par
